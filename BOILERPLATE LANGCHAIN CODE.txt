@@ -21,35 +21,12 @@ if current_date > target_date:
 else:
     llm_model = "gpt-3.5-turbo-0301"
 
+##### Set the model variable based on the current date #####
 
-##### Imports of the memory(s) that i am going to use  #####
+from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory
-from langchain.memory import ConversationSummaryBufferMemory
-from langchain.memory import ConversationTokenBufferMemory
 
-#If i am using openAI
 from langchain.chat_models import ChatOpenAI
-
-##### Set the memofy and llm model to use  #####
-llm = ChatOpenAI(temperature=0.0, model=llm_model)
-memory = ConversationBufferMemory()
-conversation = ConversationChain(
-    llm=llm, 
-    memory = memory,
-    verbose=True
-)
-
-##### To check what we have in memory #####
-
-memory.load_memory_variables({})
-
-##### Create a memory object - We can use one or more types #####
-memory = ConversationBufferMemory()
-memory = ConversationBufferWindowMemory(k=1)   
-memory = ConversationTokenBufferMemory(llm=llm, max_token_limit=50) 
-memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=100)     
-
-##### To add item to memory #####
-memory.save_context({"input": "Hi"}, 
-                    {"output": "What's up"})
+chat = ChatOpenAI( temperature=0.0, model=llm_model)
+chat
