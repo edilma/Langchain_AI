@@ -12,3 +12,4 @@ topic_dict =
 
 if topic_dict['nasa'] == 1:
     print("ALERT: New NASA story!")
+
